@@ -6,7 +6,7 @@ class DirectoryCounter
   end
   
   def count(path = @path)
-    filter = lambda {|p| p =~ /^(.+\.)*[^\.]+$/ }
+    filter = lambda {|p| p =~ /^(.+\.)*[^\.]+$/ } # only files start not with dot
     Dir.entries(path).select(&filter).each do |filename|
       full_path = "#{path}/#{filename}"
       count full_path if @recursive && File.directory?(full_path)
@@ -15,6 +15,7 @@ class DirectoryCounter
     @map
   end
   
+  private
   def accumulate(file)
     extname = File.extname(file.path)[1..-1]
     size = File.size file.path
