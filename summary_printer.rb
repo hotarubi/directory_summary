@@ -1,5 +1,5 @@
 class SummaryPrinter
-  def initialize(list)
+  def initialize(map)
   end
   
   def print

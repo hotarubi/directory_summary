@@ -1,9 +1,28 @@
 class DirectoryCounter
   def initialize(argv)
-    path = argv[1]
-    recursive = argv[0] == '-r'
+    @path, @recursive = argv[0], false if argv.length == 1
+    @path, @recursive = argv[1], argv[0] == '-r' if argv.length > 1
+    @map = { }
   end
   
-  def count
+  def count(path = @path)
+    filter = lambda {|p| p =~ /^(.+\.)*[^\.]+$/ }
+    Dir.entries(path).select(&filter).each do |filename|
+      full_path = "#{path}/#{filename}"
+      count full_path if @recursive && File.directory?(full_path)
+      accumulate File.new(full_path) unless File.directory?(full_path)
+    end
+    @map
+  end
+  
+  def accumulate(file)
+    extname = File.extname(file.path)[1..-1]
+    size = File.size file.path
+    list = @map[extname] || { 'num' => 0, 'total' => 0, 'max' => 0, 'min' => nil }
+    list['num'] += 1
+    list['total'] += size
+    list['max'] = [list['max'], size].max
+    list['min'] = list['min'] ? [list['min'], size].min : size
+    @map[extname] = list
   end
 end
