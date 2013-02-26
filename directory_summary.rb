@@ -1,5 +1,2 @@
-def recursive?
-  ARGV[0] == '-r'
-end
-
-puts recursive?
+counter = DirectoryCounter.new(ARGV)
+puts SummaryPrinter.new(counter.count).print

@@ -1,0 +1,30 @@
+css:
+  number of files: 1
+  combined size: 11
+  largest file: 11
+  smallest file: 11
+html:
+  number of files: 2
+  combined size: 1111
+  largest file: 677
+  smallest file: 434
+jpg:
+  number of files: 2
+  combined size: 165741
+  largest file: 118053
+  smallest file: 47688
+js:
+  number of files: 3
+  combined size: 4481
+  largest file: 3923
+  smallest file: 191
+txt:
+  number of files: 3
+  combined size: 1230
+  largest file: 672
+  smallest file: 5
+zip:
+  number of files: 4
+  combined size: 139813
+  largest file: 136010
+  smallest file: 760
